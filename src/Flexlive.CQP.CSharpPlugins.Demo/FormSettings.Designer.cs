@@ -36,7 +36,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -116,16 +115,6 @@
             this.label4.Text = "如果想删除某人，修改时只需打开1.xml修改即可";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(180, 147);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "连接测试";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -179,7 +168,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox2);
@@ -204,7 +192,6 @@
         private System.Windows.Forms.Button button;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

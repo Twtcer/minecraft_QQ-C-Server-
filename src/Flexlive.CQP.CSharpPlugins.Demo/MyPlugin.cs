@@ -105,6 +105,7 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
                     if (reply != "")
                     {
                         text = reply + ":" + RemoveLeft(msg, 4);
+                        text = "群消息" + text;
                     }
                     else
                     {

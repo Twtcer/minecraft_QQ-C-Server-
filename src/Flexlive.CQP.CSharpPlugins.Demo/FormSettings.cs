@@ -58,11 +58,6 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            button3.Text = "开始调试";
-            
-        }
 
         private void label2_Click(object sender, EventArgs e)
         {
