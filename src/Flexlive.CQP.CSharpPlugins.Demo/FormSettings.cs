@@ -58,7 +58,6 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
 
         }
 
-
         private void label2_Click(object sender, EventArgs e)
         {
 
@@ -68,6 +67,7 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
         {
 
         }
+
         private void button_Click(object sender, EventArgs e)
         {
             int tmp;
@@ -86,6 +86,13 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button3.Text = "正在关闭";
+            //socket.stop_socket();
+            button3.Text = "已关闭";
         }
     }
 }

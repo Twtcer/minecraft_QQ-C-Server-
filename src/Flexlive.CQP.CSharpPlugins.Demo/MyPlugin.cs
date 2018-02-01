@@ -29,7 +29,8 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
             this.Name = "minecraft_QQ";
             this.Version = new Version("1.0.0.0");
             this.Author = "yan_color";
-            this.Description = "minecraft服务器与QQ群互联";        
+            this.Description = "minecraft服务器与QQ群互联";
+                 
         }
         /// <summary>
         /// 应用启动，完成插件线程、全局变量等自身运行所必须的初始化工作。
@@ -51,7 +52,8 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
             if (check == "")
             { MessageBox.Show("未设置端口，请设置"); frm.ShowDialog(); }
             else { Port = int.Parse(LinqXML.read(confirm, "Port")); }
-            socket.start_socket();
+            CQ.SendGroupMessage(GroupSet, "机器人已启动-作者yan_color");  
+            socket.start_socket();           
         }
 
         /// <summary>
@@ -63,7 +65,6 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
             FormSettings frm = new FormSettings();
             frm.ShowDialog();
         }
-
 
         /// <summary>
         /// Type=21 私聊消息。
@@ -104,7 +105,7 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
                     string reply = LinqXML.read(confirm, fromQQ.ToString());
                     if (reply != "")
                     {
-                        text = reply + ":" + RemoveLeft(msg, 4);
+                        text = reply + ':' + RemoveLeft(msg, 4);
                         text = "群消息" + text;
                     }
                     else
@@ -134,6 +135,7 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
                              || a.IndexOf("id：") == 0 || a.IndexOf("iD：") == 0 || a.IndexOf("ID：") == 0 || a.IndexOf("Id：") == 0)
                         {
                             a = msg.Remove(0, 2);
+                            a = a.Replace("-","");
                             LinqXML.write(confirm, fromQQ.ToString(), a);
                             CQ.SendGroupMessage(GroupSet, CQ.CQCode_At(fromQQ) + "绑定id:" + msg.Replace("绑定", "") + "成功！");
                         }
@@ -151,20 +153,24 @@ namespace Flexlive.CQP.CSharpPlugins.Demo
                 if (msg == "在线人数")
                 {
                     CQ.SendGroupMessage(GroupSet, "查询中");
+                    text = "在线人数:";
+                }
+                if (msg == "服务器状态")
+                {
+                    CQ.SendGroupMessage(GroupSet, "查询中，如果没有回复，则证明服务器未开启");
+                    text = "指令服务器状态";
                 }
                 if (msg.IndexOf("功能菜单") == 0)
                 {
                     CQ.SendGroupMessage(fromGroup, "输入“在线人数”可以查询服务器在线人数。\r\n输入“服务器状态”可以查询服务器是否在运行。\r\n输入“服务器：【内容】”可以向服务器里发送消息。\r\n输入“金钱查询”可以查询游戏币。");
                 }
-                if (msg.IndexOf("登陆服命令") == 0)
+                if (msg.IndexOf("机器人：关闭") == 0)
                 {
-                    if (fromQQ.ToString() == "402067010")
+                    if (LinqXML.read(confirm, "admin") == fromQQ.ToString())
                     {
-                        string b = RemoveLeft(msg, 2);
-                    }
-                    else
-                    {
-                        CQ.SendGroupMessage(GroupSet, "拒绝访问");
+                        CQ.SendGroupMessage(GroupSet, CQ.CQCode_At(fromQQ) + "正在关闭");
+                        socket.stop_socket();
+                        CQ.SendGroupMessage(GroupSet, CQ.CQCode_At(fromQQ) + "已关闭");
                     }
                 }
             }
